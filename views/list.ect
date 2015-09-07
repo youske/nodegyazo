@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+ 
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+
+      socket.emit('cmessage');
+
+      socket.on('done', function (data) {
+        if (data.works) {
+          alert('I\'m connected');
+        }
+      });
+
+      socket.on('index', function (data) {
+        console.log('index'+data);
+      });
+
+      socket.on('timer', function (data) {
+        console.log('timer'+data);
+      });
+
+      socket.on('time2', function (data) {
+        console.log('time2'+data);
+      });
+
+      socket.on('client_connected', function () {
+        alert('client connected');
+      });
+    </script>
+
+  </head>
+  
+  <body>
+    <h1><%= @title %></h1>
+    <p>Welcome to <%= @title %></p>
+    
+    <% for ls in @list : %>
+      <a href="<%- ls.infourl %>">
+        <img src="<%- ls.thumbnailurl %>"></img>
+        <%- ls.originalname %> !(<%- ls.date %>)</a><br/>
+    <% end %>
+
+    <script src="bower_components/masonry/dist/masonry.pkgd.min.js"></script>
+
+  </body>
+</html>

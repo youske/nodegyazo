@@ -1,0 +1,18 @@
+<% extend 'fa-layout' %>
+
+<% block 'ctrl-info' : %>
+<script src='/javascripts/controller/state1.js'></script>
+<script src='/javascripts/controller/state2.js'></script>
+<script src='/javascripts/controller/uisample.js'></script>
+<script src='/javascripts/controller/pagetest.js'></script>
+<% end %>
+
+<div ui-view></div>
+<a ui-sref="state1">State1</a>
+<a ui-sref="state2">State2</a>
+<a ui-sref="uisample">uisample</a>
+<a ui-sref="pagetest">pagetest</a>
+
+<% block 'footer-info' : %>
+All Reserved.
+<% end %>

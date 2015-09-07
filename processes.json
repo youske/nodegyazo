@@ -1,0 +1,16 @@
+[
+  {
+    "name": "nodzo",
+    "script": "./bin/www",
+    "args": "",
+    "env": {
+        "NODE_ENV": "production"
+    },
+    "instances": 1,
+    "exec_mode": "cluster",
+    "watch": true,
+    "ignore_watch": ["node_modules","bower_components","vagrantfiles","tests"],
+    "merge_log": true,
+    "log_data_format": "YYYY-MM-DD HH:mm:ss"
+  }
+]

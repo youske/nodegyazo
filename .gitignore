@@ -1,0 +1,25 @@
+# directory
+node_modules/
+bower_components/
+vendor/
+cache/
+.sass-cache/
+uploads/
+tests/
+
+# files
+.DS_Store
+Thumbs.db
+npm-debug.log
+.tags
+**/.[tT]ags
+**/[cCeEgG][tT]ags
+**/[cCeEgG]TAGS
+*.swp
+*.lock
+*.bak
+*.*~
+*~
+
+#
+vagrantfiles/.vagrant/

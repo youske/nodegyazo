@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+var appconfig = require( '../appconfig' );
+var app = require( '../app' );

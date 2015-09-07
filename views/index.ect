@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="masonryTestMod">
+
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/bower_components/ngtoast/dist/ngToast.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      color: #E2E1BA;
+      background-color: #313361;
+    }  
+    .centered { margin: 0 auto; }
+    #container{
+        border:1px solid #dadada;
+    }
+    .box {
+        margin: 5px;
+        padding: 5px;
+        background: #D8D5D2;
+        float: left;
+    }
+    .masonry-brick {
+        margin: 1em;
+        display: none;
+    }
+    .masonry-brick.loaded {
+        display: block;
+    }    
+
+    .imgfrm {
+      padding:1px 2px;
+      background-color:#aaaaaa;
+      border-color:#dddddd #aaaaaa #aaaaaa #dddddd;
+      border-width:1px;
+      border-style:solid;
+      -webkit-border-top-left-radius: 4px;  
+      -webkit-border-top-right-radius: 4px;  
+      -webkit-border-bottom-right-radius: 4px;  
+      -webkit-border-bottom-left-radius: 4px;  
+      -moz-border-radius-topleft: 4px;  
+      -moz-border-radius-topright: 4px;  
+      -moz-border-radius-bottomright: 4px;  
+      -moz-border-radius-bottomleft: 4px;  
+    }
+
+   </style>
+  
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/masonry/dist/masonry.pkgd.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/ng-clip/dest/ng-clip.min.js"></script>
+    <script src="/bower_components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.min.js"></script>    
+    <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>    
+    <script src="/bower_components/ngtoast/dist/ngToast.min.js"></script>
+
+    <script src="/bower_components/angular-masonry/angular-masonry.js"></script>
+    <script src="/bower_components/imagesloaded/imagesloaded.js"></script>
+
+    <script src="/javascripts/controller/thumbnail.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        io = io.connect();
+        io.on('change',function(data) {
+          var scope = angular.element($("#MainCtrlBody")).scope();
+          scope.add( data );
+          if(!scope.$$phase) scope.$apply();
+        });
+    </script>
+
+  </head>
+
+  <body id="MainCtrlBody" ng-controller="MainCtrl">
+    <div masonry preserve-order masonry-options='{ "transitionDuration": "0.1s", "gutter": 1}'>
+      <div class="masonry-brick imgfrm" ng-repeat="item in lists">
+        <img ng-src="{{item.thumbnailurl}}" alt="A masonry brick" clip-copy="getImageUrl(item)" ng-click="toastup(item)" ></img>
+      </div>
+    </div>    
+    <toast></toast>
+  </body>
+</html>
